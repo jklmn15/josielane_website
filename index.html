@@ -375,28 +375,210 @@
       background: rgba(245,240,230,0.15);
     }
 
-    .gallery {
-      columns: 3 260px;
-      gap: 0.6rem;
+    /* Stage: all pages stacked in same grid cell */
+    .gallery-stage {
+      display: grid;
+      grid-template: 1fr / 1fr;
+      height: 670px;
     }
 
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 0.6rem;
+    .gallery-page {
+      grid-area: 1 / 1;
+      opacity: 0;
+      transition: opacity 0.75s ease;
+      pointer-events: none;
+    }
+
+    .gallery-page.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 265px 175px 220px;
+      gap: 5px;
+    }
+
+    .mosaic-item {
       overflow: hidden;
       cursor: pointer;
+      position: relative;
+      background: rgba(245,240,230,0.04);
     }
 
-    .gallery-item img {
+    .mosaic-item img {
       width: 100%;
-      transition: transform 0.6s ease, opacity 0.3s;
-      opacity: 0.92;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.03);
-      opacity: 1;
+    .mosaic-item:hover img { transform: scale(1.05); }
+
+    .mosaic-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(27,25,22,0.7) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.8rem 0.9rem;
     }
+
+    .mosaic-item:hover .mosaic-overlay { opacity: 1; }
+
+    .mosaic-caption {
+      color: rgba(245,240,230,0.92);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    /* Nav dots */
+    .gallery-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(245,240,230,0.22);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .gallery-dot.active {
+      background: rgba(245,240,230,0.85);
+      transform: scale(1.3);
+    }
+
+    /* Progress bar */
+    .gallery-progress {
+      height: 1px;
+      background: rgba(245,240,230,0.08);
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+
+    .gallery-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: rgba(245,240,230,0.4);
+    }
+
+    /* ─── LIGHTBOX ─────────────────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(27,25,22,0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: min(88vw, 960px);
+    }
+
+    .lightbox-inner img {
+      max-width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-caption {
+      margin-top: 1.1rem;
+      text-align: center;
+    }
+
+    .lightbox-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--cream);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .lightbox-venue {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,240,230,0.45);
+    }
+
+    .lightbox-counter {
+      margin-top: 0.6rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(245,240,230,0.28);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -3rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: rgba(245,240,230,0.5);
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.3rem;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover { color: var(--cream); }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(245,240,230,0.07);
+      border: 1px solid rgba(245,240,230,0.14);
+      color: rgba(245,240,230,0.65);
+      cursor: pointer;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.9rem;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+
+    .lightbox-arrow:hover {
+      background: rgba(245,240,230,0.16);
+      color: var(--cream);
+    }
+
+    .lightbox-prev { left: -4.5rem; }
+    .lightbox-next { right: -4.5rem; }
 
     /* ─── CONTACT ─────────────────────────────────────────── */
     #contact {
@@ -497,7 +679,11 @@
 
       section { padding: 5rem 1.5rem; }
 
-      .gallery { columns: 2 160px; }
+      .gallery-stage { height: 500px; }
+      .mosaic { grid-template-rows: 195px 140px 157px; }
+
+      .lightbox-prev { left: -3rem; }
+      .lightbox-next { right: -3rem; }
 
       footer {
         flex-direction: column;
@@ -507,10 +693,25 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 540px) {
       .nav-links { gap: 1rem; }
       .nav-links a { font-size: 0.6rem; }
-      .gallery { columns: 1; }
+
+      /* Mobile: block layout, only active page visible */
+      .gallery-stage {
+        display: block;
+        height: auto;
+      }
+      .gallery-page { display: none; opacity: 1; pointer-events: auto; }
+      .gallery-page.active { display: block; }
+      .mosaic {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: unset;
+        grid-auto-rows: 130px;
+      }
+      .lightbox-prev { left: 0.25rem; }
+      .lightbox-next { right: 0.25rem; }
+      .lightbox-inner { max-width: 95vw; }
     }
 
   </style>
@@ -552,9 +753,7 @@
     </div>
 
     <p class="hero-intro">
-      Singer. Writer. Storyteller.<br>
-      Someone who turns a stage — any stage —<br>
-      into something that feels made just for the room.
+      Josie Lane is a Filipino Australian performer and creator based in Naarm (Melbourne).
     </p>
   </div>
 
@@ -872,53 +1071,10 @@
 <section id="media">
   <div class="inner">
     <p class="section-label">Media</p>
-    <div class="gallery">
-
-      <div class="gallery-item">
-        <img src="images/asianprovocateur.jpg" alt="Asian Provocateur" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/JosieLaneHeadshot.jpg" alt="Josie Lane" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/SpamPress.jpeg" alt="Spamalot press" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/TPC-THE-BOY-FROM-OZ-photo-Jeff-Busby_1478-1024x683.jpeg"
-             alt="The Boy From Oz" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/TPC-JERRYS-GIRLS-photo-Jeff-Busby_1144.jpeg"
-             alt="Jerry's Girls" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/Bathhouse.jpeg" alt="Josie in the Bathhouse" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/TPC-JESUS-CHRIST-SUPERSTAR-photo-Jeff-Busby_1207-1-1024x683.jpeg"
-             alt="Jesus Christ Superstar" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/Victorian-Opera-2014-Into-the-Woods-©-Jeff-Busby-10-630x450.jpeg"
-             alt="Into the Woods" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/Miracle city Josie.jpeg" alt="Miracle City" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/LadieswhoLunch.jpeg" alt="Ladies Who Lunch" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/MicnMe.jpeg" alt="Mic & Me" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/SpamKing.jpeg" alt="Spamalot" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/TPC-JERRYS-GIRLS-photo-Jeff-Busby_1939.jpeg"
-             alt="Jerry's Girls" loading="lazy">
-      </div>
-
+    <div id="gallery-stage" class="gallery-stage"></div>
+    <div id="gallery-nav" class="gallery-nav"></div>
+    <div class="gallery-progress">
+      <div id="gallery-progress-fill" class="gallery-progress-fill"></div>
     </div>
   </div>
 </section>
@@ -966,6 +1122,219 @@
      style="color:inherit; text-decoration:none; letter-spacing:0.1em;">@josielane</a>
   <span>Melbourne, Australia</span>
 </footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LIGHTBOX
+═══════════════════════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous">&#8592;</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next">&#8594;</button>
+    <div class="lightbox-caption">
+      <span class="lightbox-title" id="lightbox-title"></span>
+      <span class="lightbox-venue" id="lightbox-venue"></span>
+      <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+
+  /* ── IMAGE DATA ─────────────────────────────────────────── */
+  const IMAGES = [
+    // Page 1
+    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions.jpeg",   title: "Spamalot",                                    venue: "One Eyed Man Productions" },
+    { src: "images/Production Shots/Asian-Provocateur-Cabaret1.jpg",            title: "Asian Provocateur",                            venue: "Cabaret" },
+    { src: "images/Production Shots/Jerrys-Girls-Production-Company.jpg",       title: "Jerry's Girls",                                venue: "The Production Company" },
+    { src: "images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions.jpg", title: "Little Shop of Horrors",              venue: "Luckiest Productions" },
+    { src: "images/Production Shots/Boy-From-Oz-Production-Company1.jpeg",      title: "The Boy from Oz",                              venue: "The Production Company" },
+    { src: "images/Production Shots/Into-The-Woods-Victorian-Opera.jpg",        title: "Into the Woods",                               venue: "Victorian Opera" },
+    { src: "images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg",        title: "Josie in the Bathhouse",                       venue: "Cabaret" },
+    { src: "images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp",title: "Miracle City",                                 venue: "Luckiest Productions" },
+    { src: "images/Production Shots/Spelling-Bee-STC.jpg",                      title: "The 25th Annual Putnam County Spelling Bee",   venue: "Sydney Theatre Company" },
+    // Page 2
+    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions2.jpeg",  title: "Spamalot",                                    venue: "One Eyed Man Productions" },
+    { src: "images/Production Shots/Asian-Provocateur-Cabaret2.jpg",            title: "Asian Provocateur",                            venue: "Cabaret" },
+    { src: "images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg",  title: "Jerry's Girls",                                venue: "The Production Company" },
+    { src: "images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions2.jpeg", title: "Little Shop of Horrors",             venue: "Luckiest Productions" },
+    { src: "images/Production Shots/Boy-From-Oz-Production-Company2.jpeg",      title: "The Boy from Oz",                              venue: "The Production Company" },
+    { src: "images/Production Shots/Moments-In-The-Woods.jpg",                  title: "Moments in the Woods",                         venue: "Adelaide Cabaret Festival" },
+    { src: "images/Production Shots/David-Campbell-Gig.jpg",                    title: "David Campbell",                               venue: "" },
+    { src: "images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg",       title: "Josie in the Bathhouse",                       venue: "Cabaret" },
+    { src: "images/Production Shots/Miracle-City-Luckiest-Productions2.webp",   title: "Miracle City",                                 venue: "Luckiest Productions" },
+    // Page 3
+    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions3.jpeg",  title: "Spamalot",                                    venue: "One Eyed Man Productions" },
+    { src: "images/Production Shots/Rock-Rhapsody-Michael-Falzon.jpg",          title: "Rock Rhapsody",                                venue: "Michael Falzon" },
+    { src: "images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg", title: "Little Shop of Horrors",              venue: "Luckiest Productions" },
+    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions4.jpg",    title: "Spamalot",                                    venue: "One Eyed Man Productions" },
+    { src: "images/Production Shots/Camp-Quality.jpg",                           title: "Camp Quality",                                 venue: "" },
+    { src: "images/Production Shots/Avenue-Q-Arts-Asia-Pacific.jpg",            title: "Avenue Q",                                     venue: "Arts Asia Pacific" },
+    { src: "images/Production Shots/Australia-House-Tait-Memorial-Trust.jpg",   title: "Australia House",                              venue: "Tait Memorial Trust" },
+    { src: "images/Production Shots/David-Campbell-Gig2.jpeg.webp",             title: "David Campbell",                               venue: "" },
+  ];
+
+  const PAGE_SIZE    = 9;
+  const INTERVAL_MS  = 5000;
+
+  /* ── BUILD PAGES ────────────────────────────────────────── */
+  const pages = [];
+  for (let i = 0; i < IMAGES.length; i += PAGE_SIZE) {
+    pages.push(IMAGES.slice(i, i + PAGE_SIZE));
+  }
+
+  let currentPage  = 0;
+  let lbIndex      = 0;
+  let timer        = null;
+  let fillTimer    = null;
+
+  const stage    = document.getElementById('gallery-stage');
+  const navEl    = document.getElementById('gallery-nav');
+  const fillEl   = document.getElementById('gallery-progress-fill');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lightbox-img');
+  const lbTitle  = document.getElementById('lightbox-title');
+  const lbVenue  = document.getElementById('lightbox-venue');
+  const lbCount  = document.getElementById('lightbox-counter');
+
+  /* ── RENDER GALLERY ─────────────────────────────────────── */
+  pages.forEach(function (pageImgs, pageIdx) {
+    const pageEl  = document.createElement('div');
+    pageEl.className = 'gallery-page' + (pageIdx === 0 ? ' active' : '');
+
+    const mosaic = document.createElement('div');
+    mosaic.className = 'mosaic';
+
+    pageImgs.forEach(function (img, i) {
+      const globalIdx = pageIdx * PAGE_SIZE + i;
+      const item      = document.createElement('div');
+      item.className  = 'mosaic-item';
+
+      /* Last item on a page with a remainder fills the empty cell(s) */
+      const remainder = pageImgs.length % 3;
+      if (remainder !== 0 && i === pageImgs.length - 1) {
+        item.style.gridColumn = 'span ' + (1 + (3 - remainder));
+      }
+
+      const picture   = document.createElement('img');
+      picture.src     = img.src;
+      picture.alt     = img.title;
+      picture.loading = pageIdx === 0 ? 'eager' : 'lazy';
+
+      const overlay   = document.createElement('div');
+      overlay.className = 'mosaic-overlay';
+
+      const cap       = document.createElement('div');
+      cap.className   = 'mosaic-caption';
+      cap.textContent = img.title + (img.venue ? ' \u2014 ' + img.venue : '');
+
+      overlay.appendChild(cap);
+      item.appendChild(picture);
+      item.appendChild(overlay);
+      item.addEventListener('click', function () { openLightbox(globalIdx); });
+      mosaic.appendChild(item);
+    });
+
+    pageEl.appendChild(mosaic);
+    stage.appendChild(pageEl);
+  });
+
+  /* ── DOTS ───────────────────────────────────────────────── */
+  pages.forEach(function (_, i) {
+    const dot = document.createElement('button');
+    dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Page ' + (i + 1));
+    dot.addEventListener('click', function () { goToPage(i, true); });
+    navEl.appendChild(dot);
+  });
+
+  /* ── CAROUSEL ───────────────────────────────────────────── */
+  function goToPage(idx, userTriggered) {
+    document.querySelectorAll('.gallery-page').forEach(function (p, i) {
+      p.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.gallery-dot').forEach(function (d, i) {
+      d.classList.toggle('active', i === idx);
+    });
+    currentPage = idx;
+    resetFill(userTriggered ? true : false);
+  }
+
+  function nextPage() {
+    goToPage((currentPage + 1) % pages.length, false);
+  }
+
+  function resetFill(immediate) {
+    if (!fillEl) return;
+    fillEl.style.transition = 'none';
+    fillEl.style.width = '0%';
+    fillEl.offsetWidth; /* force reflow */
+    fillEl.style.transition = 'width ' + INTERVAL_MS + 'ms linear';
+    fillEl.style.width = '100%';
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(nextPage, INTERVAL_MS);
+    resetFill(false);
+  }
+
+  function pauseTimer() { clearInterval(timer); }
+
+  /* Pause on hover */
+  stage.addEventListener('mouseenter', pauseTimer);
+  stage.addEventListener('mouseleave', startTimer);
+
+  /* ── LIGHTBOX ───────────────────────────────────────────── */
+  function openLightbox(idx) {
+    lbIndex = idx;
+    renderLightbox();
+    lightbox.classList.add('open');
+    pauseTimer();
+    document.addEventListener('keydown', handleKey);
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    startTimer();
+    document.removeEventListener('keydown', handleKey);
+  }
+
+  function renderLightbox() {
+    const img   = IMAGES[lbIndex];
+    lbImg.src   = img.src;
+    lbImg.alt   = img.title;
+    lbTitle.textContent = img.title;
+    lbVenue.textContent = img.venue || '';
+    lbCount.textContent = (lbIndex + 1) + ' / ' + IMAGES.length;
+  }
+
+  function stepLightbox(dir) {
+    lbIndex = (lbIndex + dir + IMAGES.length) % IMAGES.length;
+    renderLightbox();
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowRight')  stepLightbox(1);
+    if (e.key === 'ArrowLeft')   stepLightbox(-1);
+  }
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-prev').addEventListener('click', function () { stepLightbox(-1); });
+  document.getElementById('lightbox-next').addEventListener('click', function () { stepLightbox(1); });
+
+  /* ── INIT ───────────────────────────────────────────────── */
+  startTimer();
+
+}());
+</script>
 
 </body>
 </html>
