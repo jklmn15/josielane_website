@@ -400,7 +400,7 @@
 
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
     }
 
@@ -410,19 +410,55 @@
       gap: 1.25rem;
     }
 
-    .video-embed {
+    .yt-facade {
       position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       background: var(--ink);
+      cursor: pointer;
     }
 
-    .video-embed iframe {
-      position: absolute;
-      top: 0; left: 0;
+    .yt-facade img {
       width: 100%; height: 100%;
-      border: 0;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .yt-facade::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(27,25,22,0.38);
+      transition: background 0.3s ease;
+      z-index: 1;
+    }
+
+    .yt-facade:hover::before { background: rgba(27,25,22,0.18); }
+    .yt-facade:hover img { transform: scale(1.04); }
+
+    .yt-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 54px; height: 54px;
+      background: var(--cream);
+      border: none; border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.22s ease;
+      pointer-events: none;
+    }
+
+    .yt-facade:hover .yt-play { transform: translate(-50%, -50%) scale(1.13); }
+
+    .yt-play svg { width: 18px; height: 18px; fill: var(--ink); margin-left: 3px; }
+
+    .yt-facade iframe {
+      position: absolute;
+      inset: 0; width: 100%; height: 100%;
+      border: 0; z-index: 3;
     }
 
     .podcast-wrap { max-width: 620px; }
@@ -746,7 +782,7 @@
 
     <div class="credits-header">
       <h2 class="credits-title">Credits</h2>
-      <p class="credits-sub">A curated selection of works, produced with care</p>
+      <p class="credits-sub">Still here? You are obsessed with me!</p>
     </div>
 
     <div class="menu-card">
@@ -973,7 +1009,7 @@
           <em>Diva's Lament (Whatever Happened To My Part)</em> in the second act
           is an absolute hoot and a highlight of the show.
         </p>
-        <p class="review-source">— Limelight Magazine</p>
+        <p class="review-source">— Jo Litson, Limelight Magazine</p>
       </div>
 
       <div class="review">
@@ -982,7 +1018,7 @@
           with her powerhouse voice; an audience member on opening night muttered an
           audible &ldquo;wow&rdquo; as she took a breath between dazzling vocal acrobatics.
         </p>
-        <p class="review-source">— Time Out Sydney</p>
+        <p class="review-source">— Cassie Tongue, Time Out Sydney</p>
       </div>
 
       <div class="review">
@@ -990,7 +1026,7 @@
           Ms Lane has immense stage presence, a fine voice and she works the crowd
           with equal measures of sweetness and sass.
         </p>
-        <p class="review-source">— Australian Stage</p>
+        <p class="review-source">— Stephen Davenport, Australian Stage</p>
       </div>
 
     </div>
@@ -1191,24 +1227,24 @@
       <p class="media-block-label">Video</p>
       <div class="video-grid">
 
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/ZrPdf27KhwI" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="yt-facade" data-id="ZrPdf27KhwI">
+          <img src="https://img.youtube.com/vi/ZrPdf27KhwI/hqdefault.jpg" alt="Video">
+          <button class="yt-play" aria-label="Play video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
         </div>
 
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/b50QPkhsNVM" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="yt-facade" data-id="b50QPkhsNVM">
+          <img src="https://img.youtube.com/vi/b50QPkhsNVM/hqdefault.jpg" alt="Video">
+          <button class="yt-play" aria-label="Play video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
         </div>
 
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/-ONbS8hStOE" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="yt-facade" data-id="2qN3WrKXATo">
+          <img src="https://img.youtube.com/vi/2qN3WrKXATo/hqdefault.jpg" alt="Video">
+          <button class="yt-play" aria-label="Play video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
         </div>
 
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/2qN3WrKXATo" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/ilzThedm2ak" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="yt-facade" data-id="ilzThedm2ak">
+          <img src="https://img.youtube.com/vi/ilzThedm2ak/hqdefault.jpg" alt="Video">
+          <button class="yt-play" aria-label="Play video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
         </div>
 
       </div>
@@ -1219,16 +1255,13 @@
       <p class="media-block-label">Music</p>
       <div class="music-grid">
 
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/LqmYlvE7YoE" title="Music" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="yt-facade" data-id="LqmYlvE7YoE">
+          <img src="https://img.youtube.com/vi/LqmYlvE7YoE/hqdefault.jpg" alt="Music">
+          <button class="yt-play" aria-label="Play music"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
         </div>
 
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_ml8u_9JiFOvQXexMxcijNxLVt4TGTGJNA" title="Music Playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/ss9u-tKtwCY" title="Music" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="yt-facade" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=OLAK5uy_ml8u_9JiFOvQXexMxcijNxLVt4TGTGJNA&autoplay=1">
+          <button class="yt-play" aria-label="Play playlist"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
         </div>
 
       </div>
@@ -1317,6 +1350,21 @@
 
   document.querySelectorAll('.masonry-item').forEach(function (item) {
     observer.observe(item);
+  });
+
+  /* ── YOUTUBE FACADE ─────────────────────────────────────── */
+  document.querySelectorAll('.yt-facade').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var id  = el.dataset.id;
+      var src = el.dataset.src || ('https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0');
+      var iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      el.innerHTML = '';
+      el.appendChild(iframe);
+      el.style.cursor = 'default';
+    });
   });
 </script>
 
