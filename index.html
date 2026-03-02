@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
   <style>
 
     /* ─── RESET ─────────────────────────────────────────── */
@@ -375,151 +376,35 @@
       background: rgba(245,240,230,0.15);
     }
 
-    /* CSS-columns masonry: images at full natural size, no cropping */
-    .gallery-mosaic {
-      columns: 3 200px;
-      column-gap: 6px;
+    .mosaic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-auto-rows: 240px;
+      grid-auto-flow: dense;
+      gap: 8px;
     }
 
-    .mosaic-item {
-      break-inside: avoid;
-      margin-bottom: 6px;
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
+    .mosaic-item { overflow: hidden; }
+
+    .mosaic-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
     .mosaic-item img {
       width: 100%;
-      height: auto;        /* natural aspect ratio — never cropped */
+      height: 100%;
+      object-fit: cover;
       display: block;
-      transition: transform 0.55s ease;
+      transition: transform 0.5s ease;
     }
 
-    .mosaic-item:hover img { transform: scale(1.03); }
+    .mosaic-item:hover img { transform: scale(1.05); }
 
-    .mosaic-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(27,25,22,0.72) 0%, transparent 52%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      align-items: flex-end;
-      padding: 0.8rem 0.9rem;
-    }
-
-    .mosaic-item:hover .mosaic-overlay { opacity: 1; }
-
-    .mosaic-caption {
-      color: rgba(245,240,230,0.92);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      line-height: 1.4;
-      text-transform: uppercase;
-    }
-
-    /* ─── LIGHTBOX ─────────────────────────────────────────── */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(27,25,22,0.94);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-
-    .lightbox.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .lightbox-inner {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: min(88vw, 960px);
-    }
-
-    .lightbox-inner img {
-      max-width: 100%;
-      max-height: 72vh;
-      object-fit: contain;
-      display: block;
-    }
-
-    .lightbox-caption {
-      margin-top: 1.1rem;
-      text-align: center;
-    }
-
-    .lightbox-title {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1rem;
-      color: var(--cream);
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-
-    .lightbox-venue {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(245,240,230,0.45);
-    }
-
-    .lightbox-counter {
-      margin-top: 0.6rem;
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      color: rgba(245,240,230,0.28);
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: -3rem;
-      right: 0;
-      background: none;
-      border: none;
-      color: rgba(245,240,230,0.5);
-      font-size: 1.8rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0.3rem;
-      transition: color 0.2s;
-    }
-
-    .lightbox-close:hover { color: var(--cream); }
-
-    .lightbox-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(245,240,230,0.07);
-      border: 1px solid rgba(245,240,230,0.14);
-      color: rgba(245,240,230,0.65);
-      cursor: pointer;
-      padding: 0.9rem 1.1rem;
-      font-size: 0.9rem;
-      line-height: 1;
-      transition: all 0.2s;
-    }
-
-    .lightbox-arrow:hover {
-      background: rgba(245,240,230,0.16);
-      color: var(--cream);
-    }
-
-    .lightbox-prev { left: -4.5rem; }
-    .lightbox-next { right: -4.5rem; }
+    .mosaic-item.portrait  { grid-row: span 2; }
+    .mosaic-item.landscape { grid-column: span 2; }
+    .mosaic-item.large     { grid-row: span 2; grid-column: span 2; }
 
     /* ─── CONTACT ─────────────────────────────────────────── */
     #contact {
@@ -620,10 +505,10 @@
 
       section { padding: 5rem 1.5rem; }
 
-      .gallery-mosaic { columns: 2 160px; }
-
-      .lightbox-prev { left: -3rem; }
-      .lightbox-next { right: -3rem; }
+      .mosaic-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        grid-auto-rows: 160px;
+      }
 
       footer {
         flex-direction: column;
@@ -637,11 +522,12 @@
       .nav-links { gap: 1rem; }
       .nav-links a { font-size: 0.6rem; }
 
-      .gallery-mosaic { columns: 2; }
-
-      .lightbox-prev { left: 0.25rem; }
-      .lightbox-next { right: 0.25rem; }
-      .lightbox-inner { max-width: 95vw; }
+      .mosaic-item.portrait,
+      .mosaic-item.landscape,
+      .mosaic-item.large {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+      }
     }
 
   </style>
@@ -993,7 +879,165 @@
 <section id="media">
   <div class="inner">
     <p class="section-label">Media</p>
-    <div id="gallery-mosaic" class="gallery-mosaic"></div>
+    <div class="mosaic-grid">
+
+      <div class="mosaic-item large">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions.jpeg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+          <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions.jpeg" alt="Spamalot" loading="eager">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret1.jpg" data-gallery="josie" data-title="Asian Provocateur">
+          <img src="images/Production Shots/Asian-Provocateur-Cabaret1.jpg" alt="Asian Provocateur" loading="eager">
+        </a>
+      </div>
+
+      <div class="mosaic-item landscape">
+        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-Production-Company.jpg" data-gallery="josie" data-title="Jerry's Girls" data-description="The Production Company">
+          <img src="images/Production Shots/Jerrys-Girls-Production-Company.jpg" alt="Jerry's Girls" loading="eager">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions.jpg" data-gallery="josie" data-title="Little Shop of Horrors" data-description="Luckiest Productions">
+          <img src="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions.jpg" alt="Little Shop of Horrors" loading="eager">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
+          <img src="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" alt="The Boy from Oz" loading="eager">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Into-The-Woods-Victorian-Opera.jpg" data-gallery="josie" data-title="Into the Woods" data-description="Victorian Opera">
+          <img src="images/Production Shots/Into-The-Woods-Victorian-Opera.jpg" alt="Into the Woods" loading="eager">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
+          <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" alt="Josie in the Bathhouse" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item landscape">
+        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp" data-gallery="josie" data-title="Miracle City" data-description="Luckiest Productions">
+          <img src="images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp" alt="Miracle City" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Spelling-Bee-STC.jpg" data-gallery="josie" data-title="The 25th Annual Putnam County Spelling Bee" data-description="Sydney Theatre Company">
+          <img src="images/Production Shots/Spelling-Bee-STC.jpg" alt="Spelling Bee" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions2.jpeg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+          <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions2.jpeg" alt="Spamalot" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" data-gallery="josie" data-title="Asian Provocateur">
+          <img src="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" alt="Asian Provocateur" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" data-gallery="josie" data-title="Jerry's Girls" data-description="The Production Company">
+          <img src="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" alt="Jerry's Girls" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item landscape">
+        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions2.jpeg" data-gallery="josie" data-title="Little Shop of Horrors" data-description="Luckiest Productions">
+          <img src="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions2.jpeg" alt="Little Shop of Horrors" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
+          <img src="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" alt="The Boy from Oz" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item large">
+        <a class="glightbox" href="images/Production Shots/Moments-In-The-Woods.jpg" data-gallery="josie" data-title="Moments in the Woods" data-description="Adelaide Cabaret Festival">
+          <img src="images/Production Shots/Moments-In-The-Woods.jpg" alt="Moments in the Woods" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item landscape">
+        <a class="glightbox" href="images/Production Shots/David-Campbell-Gig.jpg" data-gallery="josie" data-title="David Campbell">
+          <img src="images/Production Shots/David-Campbell-Gig.jpg" alt="David Campbell" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
+          <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" alt="Josie in the Bathhouse" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item landscape">
+        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" data-gallery="josie" data-title="Miracle City" data-description="Luckiest Productions">
+          <img src="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" alt="Miracle City" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions3.jpeg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+          <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions3.jpeg" alt="Spamalot" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Rock-Rhapsody-Michael-Falzon.jpg" data-gallery="josie" data-title="Rock Rhapsody" data-description="Michael Falzon">
+          <img src="images/Production Shots/Rock-Rhapsody-Michael-Falzon.jpg" alt="Rock Rhapsody" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg" data-gallery="josie" data-title="Little Shop of Horrors" data-description="Luckiest Productions">
+          <img src="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg" alt="Little Shop of Horrors" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item landscape">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions4.jpg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+          <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions4.jpg" alt="Spamalot" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/Camp-Quality.jpg" data-gallery="josie" data-title="Camp Quality">
+          <img src="images/Production Shots/Camp-Quality.jpg" alt="Camp Quality" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item portrait">
+        <a class="glightbox" href="images/Production Shots/Avenue-Q-Arts-Asia-Pacific.jpg" data-gallery="josie" data-title="Avenue Q" data-description="Arts Asia Pacific">
+          <img src="images/Production Shots/Avenue-Q-Arts-Asia-Pacific.jpg" alt="Avenue Q" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item landscape">
+        <a class="glightbox" href="images/Production Shots/Australia-House-Tait-Memorial-Trust.jpg" data-gallery="josie" data-title="Australia House" data-description="Tait Memorial Trust">
+          <img src="images/Production Shots/Australia-House-Tait-Memorial-Trust.jpg" alt="Australia House" loading="lazy">
+        </a>
+      </div>
+
+      <div class="mosaic-item">
+        <a class="glightbox" href="images/Production Shots/David-Campbell-Gig2.jpeg.webp" data-gallery="josie" data-title="David Campbell">
+          <img src="images/Production Shots/David-Campbell-Gig2.jpeg.webp" alt="David Campbell" loading="lazy">
+        </a>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -1041,131 +1085,9 @@
   <span>Melbourne, Australia</span>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════════
-     LIGHTBOX
-═══════════════════════════════════════════════════════════ -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
-    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous">&#8592;</button>
-    <img id="lightbox-img" src="" alt="">
-    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next">&#8594;</button>
-    <div class="lightbox-caption">
-      <span class="lightbox-title" id="lightbox-title"></span>
-      <span class="lightbox-venue" id="lightbox-venue"></span>
-      <div class="lightbox-counter" id="lightbox-counter"></div>
-    </div>
-  </div>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
 <script>
-(function () {
-
-  /* ── IMAGE DATA ─────────────────────────────────────────── */
-  const IMAGES = [
-    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions.jpeg",         title: "Spamalot",                                  venue: "One Eyed Man Productions" },
-    { src: "images/Production Shots/Asian-Provocateur-Cabaret1.jpg",                  title: "Asian Provocateur",                          venue: "Cabaret" },
-    { src: "images/Production Shots/Jerrys-Girls-Production-Company.jpg",             title: "Jerry's Girls",                              venue: "The Production Company" },
-    { src: "images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions.jpg", title: "Little Shop of Horrors",                    venue: "Luckiest Productions" },
-    { src: "images/Production Shots/Boy-From-Oz-Production-Company1.jpeg",            title: "The Boy from Oz",                            venue: "The Production Company" },
-    { src: "images/Production Shots/Into-The-Woods-Victorian-Opera.jpg",              title: "Into the Woods",                             venue: "Victorian Opera" },
-    { src: "images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg",              title: "Josie in the Bathhouse",                     venue: "Cabaret" },
-    { src: "images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp",      title: "Miracle City",                               venue: "Luckiest Productions" },
-    { src: "images/Production Shots/Spelling-Bee-STC.jpg",                            title: "The 25th Annual Putnam County Spelling Bee", venue: "Sydney Theatre Company" },
-    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions2.jpeg",         title: "Spamalot",                                  venue: "One Eyed Man Productions" },
-    { src: "images/Production Shots/Asian-Provocateur-Cabaret2.jpg",                  title: "Asian Provocateur",                          venue: "Cabaret" },
-    { src: "images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg",         title: "Jerry's Girls",                             venue: "The Production Company" },
-    { src: "images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions2.jpeg",title: "Little Shop of Horrors",                   venue: "Luckiest Productions" },
-    { src: "images/Production Shots/Boy-From-Oz-Production-Company2.jpeg",            title: "The Boy from Oz",                            venue: "The Production Company" },
-    { src: "images/Production Shots/Moments-In-The-Woods.jpg",                        title: "Moments in the Woods",                       venue: "Adelaide Cabaret Festival" },
-    { src: "images/Production Shots/David-Campbell-Gig.jpg",                          title: "David Campbell",                             venue: "" },
-    { src: "images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg",             title: "Josie in the Bathhouse",                     venue: "Cabaret" },
-    { src: "images/Production Shots/Miracle-City-Luckiest-Productions2.webp",         title: "Miracle City",                               venue: "Luckiest Productions" },
-    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions3.jpeg",         title: "Spamalot",                                  venue: "One Eyed Man Productions" },
-    { src: "images/Production Shots/Rock-Rhapsody-Michael-Falzon.jpg",                title: "Rock Rhapsody",                              venue: "Michael Falzon" },
-    { src: "images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg",title: "Little Shop of Horrors",                    venue: "Luckiest Productions" },
-    { src: "images/Production Shots/Spamalot-One-Eyed-Man-Productions4.jpg",          title: "Spamalot",                                  venue: "One Eyed Man Productions" },
-    { src: "images/Production Shots/Camp-Quality.jpg",                                 title: "Camp Quality",                               venue: "" },
-    { src: "images/Production Shots/Avenue-Q-Arts-Asia-Pacific.jpg",                  title: "Avenue Q",                                   venue: "Arts Asia Pacific" },
-    { src: "images/Production Shots/Australia-House-Tait-Memorial-Trust.jpg",         title: "Australia House",                            venue: "Tait Memorial Trust" },
-    { src: "images/Production Shots/David-Campbell-Gig2.jpeg.webp",                   title: "David Campbell",                             venue: "" },
-  ];
-
-  let lbIndex = 0;
-
-  const mosaic   = document.getElementById('gallery-mosaic');
-  const lightbox = document.getElementById('lightbox');
-  const lbImg    = document.getElementById('lightbox-img');
-  const lbTitle  = document.getElementById('lightbox-title');
-  const lbVenue  = document.getElementById('lightbox-venue');
-  const lbCount  = document.getElementById('lightbox-counter');
-
-  /* ── RENDER ALL IMAGES ──────────────────────────────────── */
-  IMAGES.forEach(function (img, idx) {
-    const item    = document.createElement('div');
-    item.className = 'mosaic-item';
-
-    const picture   = document.createElement('img');
-    picture.src     = img.src;
-    picture.alt     = img.title;
-    picture.loading = idx < 9 ? 'eager' : 'lazy';
-
-    const overlay   = document.createElement('div');
-    overlay.className = 'mosaic-overlay';
-
-    const cap       = document.createElement('div');
-    cap.className   = 'mosaic-caption';
-    cap.textContent = img.title + (img.venue ? ' \u2014 ' + img.venue : '');
-
-    overlay.appendChild(cap);
-    item.appendChild(picture);
-    item.appendChild(overlay);
-    item.addEventListener('click', function () { openLightbox(idx); });
-    mosaic.appendChild(item);
-  });
-
-  /* ── LIGHTBOX ───────────────────────────────────────────── */
-  function openLightbox(idx) {
-    lbIndex = idx;
-    renderLightbox();
-    lightbox.classList.add('open');
-    document.addEventListener('keydown', handleKey);
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    document.removeEventListener('keydown', handleKey);
-  }
-
-  function renderLightbox() {
-    const img = IMAGES[lbIndex];
-    lbImg.src = img.src;
-    lbImg.alt = img.title;
-    lbTitle.textContent = img.title;
-    lbVenue.textContent = img.venue || '';
-    lbCount.textContent = (lbIndex + 1) + ' / ' + IMAGES.length;
-  }
-
-  function stepLightbox(dir) {
-    lbIndex = (lbIndex + dir + IMAGES.length) % IMAGES.length;
-    renderLightbox();
-  }
-
-  function handleKey(e) {
-    if (e.key === 'Escape')     closeLightbox();
-    if (e.key === 'ArrowRight') stepLightbox(1);
-    if (e.key === 'ArrowLeft')  stepLightbox(-1);
-  }
-
-  lightbox.addEventListener('click', function (e) {
-    if (e.target === lightbox) closeLightbox();
-  });
-
-  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-  document.getElementById('lightbox-prev').addEventListener('click', function () { stepLightbox(-1); });
-  document.getElementById('lightbox-next').addEventListener('click', function () { stepLightbox(1); });
-
-}());
+  GLightbox({ selector: '.glightbox' });
 </script>
 
 </body>
