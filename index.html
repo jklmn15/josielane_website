@@ -446,32 +446,44 @@
       line-height: 1.7;
     }
 
-    .contact-email {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.25rem;
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-email,
+    .contact-insta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
       text-decoration: none;
       color: var(--ink);
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 0.2rem;
-      transition: border-color 0.25s;
-    }
-
-    .contact-email:hover { border-color: var(--ink); }
-
-    .contact-social {
-      margin-top: 1.25rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-    }
-
-    .contact-social a {
-      color: var(--ink-muted);
-      text-decoration: none;
       transition: color 0.2s;
     }
 
-    .contact-social a:hover { color: var(--ink); }
+    .contact-email svg,
+    .contact-insta svg {
+      flex-shrink: 0;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+    }
+
+    .contact-email:hover svg,
+    .contact-insta:hover svg { opacity: 1; }
+
+    .contact-email {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+
+    .contact-insta {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+    }
 
     /* ─── FOOTER ──────────────────────────────────────────── */
     footer {
@@ -881,6 +893,14 @@
         <p class="review-source">— Time Out Sydney</p>
       </div>
 
+      <div class="review">
+        <p class="review-text">
+          Ms Lane has immense stage presence, a fine voice and she works the crowd
+          with equal measures of sweetness and sass.
+        </p>
+        <p class="review-source">— Australian Stage</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -919,26 +939,26 @@
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
-          <img src="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" alt="The Boy from Oz" loading="eager">
-        </a>
-      </div>
-
-      <div class="masonry-item">
         <a class="glightbox" href="images/Production Shots/Into-The-Woods-Victorian-Opera.jpg" data-gallery="josie" data-title="Into the Woods" data-description="Victorian Opera">
           <img src="images/Production Shots/Into-The-Woods-Victorian-Opera.jpg" alt="Into the Woods" loading="eager">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
-          <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" alt="Josie in the Bathhouse" loading="lazy">
+        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
+          <img src="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" alt="The Boy from Oz" loading="eager">
         </a>
       </div>
 
       <div class="masonry-item">
         <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp" data-gallery="josie" data-title="Miracle City" data-description="Luckiest Productions">
           <img src="images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp" alt="Miracle City" loading="lazy">
+        </a>
+      </div>
+
+      <div class="masonry-item">
+        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
+          <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" alt="Josie in the Bathhouse" loading="lazy">
         </a>
       </div>
 
@@ -955,14 +975,14 @@
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" data-gallery="josie" data-title="Asian Provocateur">
-          <img src="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" alt="Asian Provocateur" loading="lazy">
+        <a class="glightbox" href="images/Production Shots/David-Campbell-Gig.jpg" data-gallery="josie" data-title="David Campbell">
+          <img src="images/Production Shots/David-Campbell-Gig.jpg" alt="David Campbell" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" data-gallery="josie" data-title="Jerry's Girls" data-description="The Production Company">
-          <img src="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" alt="Jerry's Girls" loading="lazy">
+        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" data-gallery="josie" data-title="Asian Provocateur">
+          <img src="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" alt="Asian Provocateur" loading="lazy">
         </a>
       </div>
 
@@ -973,32 +993,20 @@
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
-          <img src="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" alt="The Boy from Oz" loading="lazy">
+        <a class="glightbox" href="images/Production Shots/Jesus-Christ-Superstar-The-Production-Company.jpg" data-gallery="josie" data-title="Jesus Christ Superstar" data-description="The Production Company">
+          <img src="images/Production Shots/Jesus-Christ-Superstar-The-Production-Company.jpg" alt="Jesus Christ Superstar" loading="lazy">
+        </a>
+      </div>
+
+      <div class="masonry-item">
+        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" data-gallery="josie" data-title="Jerry's Girls" data-description="The Production Company">
+          <img src="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" alt="Jerry's Girls" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
         <a class="glightbox" href="images/Production Shots/Moments-In-The-Woods.jpg" data-gallery="josie" data-title="Moments in the Woods" data-description="Adelaide Cabaret Festival">
           <img src="images/Production Shots/Moments-In-The-Woods.jpg" alt="Moments in the Woods" loading="lazy">
-        </a>
-      </div>
-
-      <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/David-Campbell-Gig.jpg" data-gallery="josie" data-title="David Campbell">
-          <img src="images/Production Shots/David-Campbell-Gig.jpg" alt="David Campbell" loading="lazy">
-        </a>
-      </div>
-
-      <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
-          <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" alt="Josie in the Bathhouse" loading="lazy">
-        </a>
-      </div>
-
-      <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" data-gallery="josie" data-title="Miracle City" data-description="Luckiest Productions">
-          <img src="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" alt="Miracle City" loading="lazy">
         </a>
       </div>
 
@@ -1015,8 +1023,38 @@
       </div>
 
       <div class="masonry-item">
+        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
+          <img src="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" alt="The Boy from Oz" loading="lazy">
+        </a>
+      </div>
+
+      <div class="masonry-item">
+        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret3.jpg" data-gallery="josie" data-title="Asian Provocateur">
+          <img src="images/Production Shots/Asian-Provocateur-Cabaret3.jpg" alt="Asian Provocateur" loading="lazy">
+        </a>
+      </div>
+
+      <div class="masonry-item">
         <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg" data-gallery="josie" data-title="Little Shop of Horrors" data-description="Luckiest Productions">
           <img src="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg" alt="Little Shop of Horrors" loading="lazy">
+        </a>
+      </div>
+
+      <div class="masonry-item">
+        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
+          <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" alt="Josie in the Bathhouse" loading="lazy">
+        </a>
+      </div>
+
+      <div class="masonry-item">
+        <a class="glightbox" href="images/Production Shots/Pirates-Of-Penzance-The-Production-Company.jpg" data-gallery="josie" data-title="The Pirates of Penzance" data-description="The Production Company">
+          <img src="images/Production Shots/Pirates-Of-Penzance-The-Production-Company.jpg" alt="The Pirates of Penzance" loading="lazy">
+        </a>
+      </div>
+
+      <div class="masonry-item">
+        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" data-gallery="josie" data-title="Miracle City" data-description="Luckiest Productions">
+          <img src="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" alt="Miracle City" loading="lazy">
         </a>
       </div>
 
@@ -1068,19 +1106,27 @@
       </h2>
 
       <p class="contact-body">
-        For bookings, collaborations, and general correspondence &mdash;<br>
-        Josie would love to hear from you.
+        Josie is self-represented.
       </p>
 
-      <a href="mailto:josietlane@gmail.com" class="contact-email">
-        josietlane@gmail.com
-      </a>
+      <div class="contact-links">
+        <a href="mailto:josietlane@gmail.com" class="contact-email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <polyline points="2,4 12,13 22,4"/>
+          </svg>
+          josietlane@gmail.com
+        </a>
 
-      <p class="contact-social">
-        <a href="https://www.instagram.com/josielane" target="_blank" rel="noopener">
+        <a href="https://www.instagram.com/josielane" class="contact-insta" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
           @josielane
         </a>
-      </p>
+      </div>
 
     </div>
   </div>
