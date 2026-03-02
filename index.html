@@ -535,9 +535,18 @@
 
     .contact-links {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 1rem;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-sep {
+      width: 1px;
+      height: 1.25rem;
+      background: var(--line);
+      flex-shrink: 0;
     }
 
     .contact-email,
@@ -563,11 +572,11 @@
     .contact-email {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     .contact-insta {
-      font-size: 1rem;
+      font-size: 0.9rem;
       letter-spacing: 0.06em;
       color: var(--ink-muted);
     }
@@ -644,6 +653,10 @@
         white-space: normal;
       }
       .item-award { align-self: flex-start; }
+
+      /* ── CONTACT ── */
+      .contact-links { flex-direction: column; gap: 0.9rem; }
+      .contact-sep { display: none; }
 
       /* ── GALLERY ── */
       .masonry-grid { columns: 2; }
@@ -781,7 +794,7 @@
     <p class="section-label">Selected Credits</p>
 
     <div class="credits-header">
-      <h2 class="credits-title">Credits</h2>
+      <h2 class="credits-title">Credits.</h2>
       <p class="credits-sub">Still here? You are obsessed with me!</p>
     </div>
 
@@ -1290,7 +1303,7 @@
       <p class="section-label">Contact</p>
 
       <h2 class="contact-title">
-        Get in touch.</em>
+        Get in touch.
       </h2>
 
       <p class="contact-body">
@@ -1305,6 +1318,8 @@
           </svg>
           josietlane@gmail.com
         </a>
+
+        <span class="contact-sep" aria-hidden="true"></span>
 
         <a href="https://www.instagram.com/josielane" class="contact-insta" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
