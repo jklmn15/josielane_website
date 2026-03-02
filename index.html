@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <title>Josie Lane</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,7 @@
 
     /* ─── RESET ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; }
 
     /* ─── TOKENS ─────────────────────────────────────────── */
     :root {
@@ -530,9 +531,32 @@
     }
 
     @media (max-width: 540px) {
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.6rem; }
+      /* ── NAV ── */
+      nav { padding: 0.85rem 1rem; }
+      .nav-links { gap: 0.75rem; }
+      .nav-links a { font-size: 0.55rem; letter-spacing: 0.1em; }
 
+      /* ── HERO TAGS ── */
+      .hero-tags {
+        gap: 0 1rem;
+        letter-spacing: 0.08em;
+        font-size: 0.62rem;
+      }
+      .hero-tags span + span::before { margin-right: 1rem; }
+
+      /* ── CREDITS ── */
+      .course-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+      }
+      .item-co {
+        text-align: left;
+        white-space: normal;
+      }
+      .item-award { align-self: flex-start; }
+
+      /* ── GALLERY ── */
       .masonry-grid { columns: 2; }
     }
 
