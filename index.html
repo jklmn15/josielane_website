@@ -363,19 +363,64 @@
       color: var(--ink-muted);
     }
 
-    /* ─── MEDIA / GALLERY ─────────────────────────────────── */
-    #media {
+    /* ─── PHOTOS / GALLERY ────────────────────────────────── */
+    #photos {
       background: var(--ink);
       color: var(--cream);
     }
 
-    #media .section-label {
+    #photos .section-label {
       color: rgba(245,240,230,0.35);
     }
 
-    #media .section-label::after {
+    #photos .section-label::after {
       background: rgba(245,240,230,0.15);
     }
+
+    /* ─── MEDIA (VIDEO / MUSIC / PODCAST) ─────────────────── */
+    #media { background: var(--cream); }
+
+    .media-block { margin-bottom: 4rem; }
+    .media-block:last-child { margin-bottom: 0; }
+
+    .media-block-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 1.5rem;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    .podcast-wrap { max-width: 620px; }
 
     .masonry-grid {
       columns: 3 260px;
@@ -522,6 +567,9 @@
 
       .masonry-grid { columns: 2 200px; }
 
+      .video-grid { grid-template-columns: 1fr; }
+      .music-grid { grid-template-columns: 1fr; }
+
       footer {
         flex-direction: column;
         gap: 0.4rem;
@@ -533,8 +581,8 @@
     @media (max-width: 540px) {
       /* ── NAV ── */
       nav { padding: 0.85rem 1rem; }
-      .nav-links { gap: 0.75rem; }
-      .nav-links a { font-size: 0.55rem; letter-spacing: 0.1em; }
+      .nav-links { gap: 0.6rem; }
+      .nav-links a { font-size: 0.5rem; letter-spacing: 0.08em; }
 
       /* ── HERO TAGS ── */
       .hero-tags {
@@ -573,6 +621,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#credits">Credits</a></li>
     <li><a href="#press">Press</a></li>
+    <li><a href="#photos">Photos</a></li>
     <li><a href="#media">Media</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -945,11 +994,11 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════
-     MEDIA / GALLERY
+     PHOTOS / GALLERY
 ═══════════════════════════════════════════════════════════ -->
-<section id="media">
+<section id="photos">
   <div class="inner">
-    <p class="section-label">Media</p>
+    <p class="section-label">Photos</p>
     <div class="masonry-grid">
 
       <div class="masonry-item">
@@ -1121,6 +1170,61 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     MEDIA (VIDEO / MUSIC / PODCAST)
+═══════════════════════════════════════════════════════════ -->
+<section id="media">
+  <div class="inner">
+    <p class="section-label">Media</p>
+
+    <!-- VIDEO -->
+    <div class="media-block">
+      <p class="media-block-label">Video</p>
+      <div class="video-grid">
+
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/ZrPdf27KhwI" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/b50QPkhsNVM" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/-ONbS8hStOE" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MUSIC -->
+    <div class="media-block">
+      <p class="media-block-label">Music</p>
+      <div class="music-grid">
+
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/LqmYlvE7YoE" title="Music" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_ml8u_9JiFOvQXexMxcijNxLVt4TGTGJNA" title="Music Playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PODCAST -->
+    <div class="media-block">
+      <p class="media-block-label">Podcast</p>
+      <div class="podcast-wrap">
+        <iframe src="https://embed.podcasts.apple.com/au/podcast/avenue-q-with-josie-lane/id1200171626?i=1000508969729" height="175" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *; clipboard-write" style="width:100%; border:0; border-radius:12px; overflow:hidden; background:transparent;"></iframe>
+      </div>
+    </div>
+
   </div>
 </section>
 
