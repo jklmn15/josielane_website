@@ -521,17 +521,18 @@
     .masonry-item {
       break-inside: avoid;
       margin-bottom: 12px;
-      opacity: 0;
-      transition: opacity 0.7s ease;
-    }
-
-    .masonry-item.revealed {
-      opacity: 1;
     }
 
     .masonry-item a {
       display: block;
       line-height: 0;
+      overflow: hidden;
+      outline: none;
+    }
+
+    .masonry-item a:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
     }
 
     .masonry-item img {
@@ -709,6 +710,37 @@
       /* ── GALLERY ── */
       .masonry-grid { columns: 2; }
     }
+
+  /* ─── GLIGHTBOX CAPTION OVERRIDES ───────────────────────── */
+  .gslide-description {
+    background: var(--cream) !important;
+  }
+  .gdesc-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+    padding: 0.6rem 1rem !important;
+    gap: 1.5rem;
+  }
+  .gslide-title {
+    font-family: var(--sans) !important;
+    font-size: 0.72rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: var(--ink) !important;
+    margin: 0 !important;
+  }
+  .gslide-desc {
+    flex-shrink: 0;
+  }
+  .gslide-desc p {
+    font-family: var(--sans) !important;
+    font-size: 0.72rem !important;
+    color: var(--ink-muted) !important;
+    margin: 0 !important;
+    letter-spacing: 0.05em !important;
+  }
 
   </style>
 </head>
@@ -1114,163 +1146,163 @@
     <div class="masonry-grid">
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions4.jpg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions4.jpg" data-gallery="josie" data-title="Spamalot, One Eyed Man Productions" data-description="📷 Marnya Rothe">
           <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions4.jpg" alt="Spamalot" loading="eager">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" data-gallery="josie" data-title="Asian Provocateur">
+        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" data-gallery="josie" data-title="Asian Provocateur" data-description="📷 Lauren Peters">
           <img src="images/Production Shots/Asian-Provocateur-Cabaret2.jpg" alt="Asian Provocateur" loading="eager">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-Production-Company.jpg" data-gallery="josie" data-title="Jerry's Girls" data-description="The Production Company">
+        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-Production-Company.jpg" data-gallery="josie" data-title="Jerry's Girls, The Production Company" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Jerrys-Girls-Production-Company.jpg" alt="Jerry's Girls" loading="eager">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
+        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" data-gallery="josie" data-title="The Boy from Oz, The Production Company" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Boy-From-Oz-Production-Company1.jpeg" alt="The Boy from Oz" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp" data-gallery="josie" data-title="Miracle City" data-description="Luckiest Productions">
+        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp" data-gallery="josie" data-title="Miracle City, Luckiest Productions" data-description="📷 Branco Gaica">
           <img src="images/Production Shots/Miracle-City-Luckiest-Productions.jpg.webp" alt="Miracle City" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions.jpg" data-gallery="josie" data-title="Little Shop of Horrors" data-description="Luckiest Productions">
+        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions.jpg" data-gallery="josie" data-title="Little Shop of Horrors, Luckiest Productions" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions.jpg" alt="Little Shop of Horrors" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Into-The-Woods-Victorian-Opera.jpg" data-gallery="josie" data-title="Into the Woods" data-description="Victorian Opera">
+        <a class="glightbox" href="images/Production Shots/Into-The-Woods-Victorian-Opera.jpg" data-gallery="josie" data-title="Into the Woods, Victorian Opera" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Into-The-Woods-Victorian-Opera.jpg" alt="Into the Woods" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions.jpeg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions.jpeg" data-gallery="josie" data-title="Spamalot, One Eyed Man Productions" data-description="📷 John McRae">
           <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions.jpeg" alt="Spamalot" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/David-Campbell-Gig.jpg" data-gallery="josie" data-title="David Campbell">
+        <a class="glightbox" href="images/Production Shots/David-Campbell-Gig.jpg" data-gallery="josie" data-title="David Campbell" data-description="📷 Bronwen Caple">
           <img src="images/Production Shots/David-Campbell-Gig.jpg" alt="David Campbell" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret1.jpg" data-gallery="josie" data-title="Asian Provocateur">
+        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret1.jpg" data-gallery="josie" data-title="Asian Provocateur" data-description="📷 Lauren Peters">
           <img src="images/Production Shots/Asian-Provocateur-Cabaret1.jpg" alt="Asian Provocateur" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
+        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" data-gallery="josie" data-title="Josie in the Bathhouse" data-description="📷 Jo Bird">
           <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret.jpg" alt="Josie in the Bathhouse" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Pirates-Of-Penzance-The-Production-Company.jpg" data-gallery="josie" data-title="The Pirates of Penzance" data-description="The Production Company">
+        <a class="glightbox" href="images/Production Shots/Pirates-Of-Penzance-The-Production-Company.jpg" data-gallery="josie" data-title="The Pirates of Penzance, The Production Company" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Pirates-Of-Penzance-The-Production-Company.jpg" alt="The Pirates of Penzance" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions2.jpeg" data-gallery="josie" data-title="Little Shop of Horrors" data-description="Luckiest Productions">
+        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions2.jpeg" data-gallery="josie" data-title="Little Shop of Horrors, Luckiest Productions" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions2.jpeg" alt="Little Shop of Horrors" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Jesus-Christ-Superstar-The-Production-Company.jpg" data-gallery="josie" data-title="Jesus Christ Superstar" data-description="The Production Company">
+        <a class="glightbox" href="images/Production Shots/Jesus-Christ-Superstar-The-Production-Company.jpg" data-gallery="josie" data-title="Jesus Christ Superstar, The Production Company" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Jesus-Christ-Superstar-The-Production-Company.jpg" alt="Jesus Christ Superstar" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Moments-In-The-Woods.jpg" data-gallery="josie" data-title="Moments in the Woods" data-description="Adelaide Cabaret Festival">
+        <a class="glightbox" href="images/Production Shots/Moments-In-The-Woods.jpg" data-gallery="josie" data-title="Moments in the Woods, Adelaide Cabaret Festival" data-description="📷 Adelaide Advertiser">
           <img src="images/Production Shots/Moments-In-The-Woods.jpg" alt="Moments in the Woods" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions2.jpeg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions2.jpeg" data-gallery="josie" data-title="Spamalot, One Eyed Man Productions" data-description="📷 John McRae">
           <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions2.jpeg" alt="Spamalot" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Rock-Rhapsody-Michael-Falzon.jpg" data-gallery="josie" data-title="Rock Rhapsody" data-description="Michael Falzon">
+        <a class="glightbox" href="images/Production Shots/Rock-Rhapsody-Michael-Falzon.jpg" data-gallery="josie" data-title="Rock Rhapsody, Michael Falzon" data-description="📷 Crown Melbourne">
           <img src="images/Production Shots/Rock-Rhapsody-Michael-Falzon.jpg" alt="Rock Rhapsody" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Australia-House-Tait-Memorial-Trust.jpg" data-gallery="josie" data-title="Australia House" data-description="Tait Memorial Trust">
+        <a class="glightbox" href="images/Production Shots/Australia-House-Tait-Memorial-Trust.jpg" data-gallery="josie" data-title="Australia House, Tait Memorial Trust" data-description="📷 Clare Hannan">
           <img src="images/Production Shots/Australia-House-Tait-Memorial-Trust.jpg" alt="Australia House" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret3.jpg" data-gallery="josie" data-title="Asian Provocateur">
+        <a class="glightbox" href="images/Production Shots/Asian-Provocateur-Cabaret3.jpg" data-gallery="josie" data-title="Asian Provocateur" data-description="📷 Christina O'Neill">
           <img src="images/Production Shots/Asian-Provocateur-Cabaret3.jpg" alt="Asian Provocateur" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" data-gallery="josie" data-title="Jerry's Girls" data-description="The Production Company">
+        <a class="glightbox" href="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" data-gallery="josie" data-title="Jerry's Girls, The Production Company" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Jerrys-Girls-The-Production-Company.jpeg" alt="Jerry's Girls" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Spelling-Bee-STC.jpg" data-gallery="josie" data-title="The 25th Annual Putnam County Spelling Bee" data-description="Sydney Theatre Company">
+        <a class="glightbox" href="images/Production Shots/Spelling-Bee-STC.jpg" data-gallery="josie" data-title="The 25th Annual Putnam County Spelling Bee, Sydney Theatre Company">
           <img src="images/Production Shots/Spelling-Bee-STC.jpg" alt="Spelling Bee" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" data-gallery="josie" data-title="The Boy from Oz" data-description="The Production Company">
+        <a class="glightbox" href="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" data-gallery="josie" data-title="The Boy from Oz, The Production Company" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Boy-From-Oz-Production-Company2.jpeg" alt="The Boy from Oz" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Avenue-Q-Arts-Asia-Pacific.jpg" data-gallery="josie" data-title="Avenue Q" data-description="Arts Asia Pacific">
+        <a class="glightbox" href="images/Production Shots/Avenue-Q-Arts-Asia-Pacific.jpg" data-gallery="josie" data-title="Avenue Q, Arts Asia Pacific">
           <img src="images/Production Shots/Avenue-Q-Arts-Asia-Pacific.jpg" alt="Avenue Q" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg" data-gallery="josie" data-title="Little Shop of Horrors" data-description="Luckiest Productions">
+        <a class="glightbox" href="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg" data-gallery="josie" data-title="Little Shop of Horrors, Luckiest Productions" data-description="📷 Jeff Busby">
           <img src="images/Production Shots/Little-Shop-Of-Horrors-Luckiest-Productions3.jpg" alt="Little Shop of Horrors" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" data-gallery="josie" data-title="Josie in the Bathhouse">
+        <a class="glightbox" href="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" data-gallery="josie" data-title="Josie in the Bathhouse" data-description="📷 Jo Bird">
           <img src="images/Production Shots/Josie-In-The-Bathhouse-Cabaret2.jpg" alt="Josie in the Bathhouse" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions3.jpeg" data-gallery="josie" data-title="Spamalot" data-description="One Eyed Man Productions">
+        <a class="glightbox" href="images/Production Shots/Spamalot-One-Eyed-Man-Productions3.jpeg" data-gallery="josie" data-title="Spamalot, One Eyed Man Productions" data-description="📷 John McRae">
           <img src="images/Production Shots/Spamalot-One-Eyed-Man-Productions3.jpeg" alt="Spamalot" loading="lazy">
         </a>
       </div>
 
       <div class="masonry-item">
-        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" data-gallery="josie" data-title="Miracle City" data-description="Luckiest Productions">
+        <a class="glightbox" href="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" data-gallery="josie" data-title="Miracle City, Luckiest Productions" data-description="📷 Kurt Sneddon">
           <img src="images/Production Shots/Miracle-City-Luckiest-Productions2.webp" alt="Miracle City" loading="lazy">
         </a>
       </div>
@@ -1405,25 +1437,12 @@
 <footer>
   <span>&copy; 2026 Josie Lane</span>
   <span>Melbourne, Australia</span>
+  <span>Headshot: Lachlan Woods</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
 <script>
   GLightbox({ selector: '.glightbox' });
-
-  /* ── SCROLL-REVEAL ──────────────────────────────────────── */
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '0px 0px -48px 0px', threshold: 0.06 });
-
-  document.querySelectorAll('.masonry-item').forEach(function (item) {
-    observer.observe(item);
-  });
 
   /* ── YOUTUBE FACADE ─────────────────────────────────────── */
   document.querySelectorAll('.yt-facade').forEach(function (el) {
